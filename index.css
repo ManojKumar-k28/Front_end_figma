@@ -1,0 +1,665 @@
+/* ==========================================================================
+   1. Global Styles & CSS Reset
+   ========================================================================== */
+
+/* A standard CSS reset to ensure consistent styling across browsers. */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base styles for the entire document. Uses a system font stack for performance and native feel. */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #1f2937;
+    background-color: white; /* Explicitly set a background for consistency */
+}
+
+
+/* ==========================================================================
+   2. Header & Navigation Styles
+   ========================================================================== */
+
+header {
+    /* Fixed header that stays at the top of the viewport */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    z-index: 1000; /* High z-index to stay above other content */
+}
+
+.header-container {
+    /* Constrains header content width and centers it */
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem; /* Padding for mobile */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px; /* Fixed height for the header */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* 8px */
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    background: #ef4444;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px; /* For the 'A' */
+}
+
+.logo-text {
+    font-size: 0.875rem; /* 14px */
+}
+
+.logo-text .company {
+    font-weight: bold;
+    color: #1f2937;
+}
+
+.logo-text .tagline {
+    font-size: 0.75rem; /* 12px */
+    color: #6b7280;
+}
+
+/* --- Desktop Navigation (Hidden by default, shown on larger screens) --- */
+.nav-desktop {
+    display: none; /* Mobile-first: hidden initially */
+    gap: 2rem; /* 32px */
+}
+
+.nav-desktop a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 0.875rem; /* 14px */
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+/* Style for the "active" or primary link */
+.nav-desktop a:first-child {
+    color: #1f2937;
+}
+
+.nav-desktop a:hover {
+    color: #ef4444;
+}
+
+.cta-button-desktop {
+    display: none; /* Mobile-first: hidden initially */
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem; /* 8px 24px */
+    border-radius: 9999px; /* Pill shape */
+    font-size: 0.875rem; /* 14px */
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button-desktop:hover {
+    background: #dc2626; /* Darker red on hover */
+}
+
+/* --- Mobile Menu Button (Hamburger Icon) --- */
+.mobile-menu-btn {
+    display: block; /* Shown by default on mobile */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem; /* 8px */
+    border-radius: 0.5rem; /* 8px */
+    transition: background-color 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+    background: #f3f4f6;
+}
+
+.mobile-menu-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: #1f2937;
+}
+
+/* --- Mobile Menu (Dropdown) --- */
+.mobile-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 64px; /* Positioned just below the header */
+    left: 0;
+    right: 0;
+    background: #fdf2f8; /* Light pink background */
+    border-top: 1px solid #e5e7eb;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    padding: 1rem; /* 16px */
+}
+
+/* JavaScript will toggle this class to show the menu */
+.mobile-menu.active {
+    display: block;
+}
+
+.mobile-menu nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* 8px */
+}
+
+.mobile-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* 12px */
+    padding: 0.75rem 1rem; /* 12px 16px */
+    text-decoration: none;
+    color: #4b5563;
+    border-radius: 0.5rem; /* 8px */
+    transition: background-color 0.3s ease;
+}
+
+.mobile-menu-item:first-child {
+    color: #1f2937;
+}
+
+.mobile-menu-item:hover {
+    background: white;
+}
+
+.mobile-menu-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e5e7eb;
+}
+
+.mobile-menu-item:first-child .mobile-menu-icon {
+    background: #ef4444;
+}
+
+.mobile-menu-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: #374151;
+}
+
+.mobile-menu-item:first-child .mobile-menu-icon svg {
+    stroke: white;
+}
+
+.mobile-menu-text {
+    font-size: 0.875rem; /* 14px */
+    font-weight: 500;
+}
+
+.mobile-cta-button {
+    margin-top: 1rem; /* 16px */
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem; /* 12px 24px */
+    border-radius: 9999px;
+    font-size: 0.875rem; /* 14px */
+    font-weight: 500;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.mobile-cta-button:hover {
+    background: #dc2626;
+}
+
+
+/* ==========================================================================
+   3. Hero Section
+   ========================================================================== */
+
+.hero {
+    /* Padding-top accounts for the fixed 64px header + extra space */
+    padding: 7rem 1rem 3rem; /* 112px 16px 48px */
+    background: linear-gradient(to bottom right, #fce7f3, #fdf2f8, white);
+}
+
+.hero-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; /* Mobile: Content stacks vertically */
+    align-items: center;
+    gap: 2rem; /* 32px */
+}
+
+.hero-content {
+    flex: 1; /* Allows content to take available space */
+    text-align: center; /* Mobile: Text is centered */
+}
+
+.hero h1 {
+    font-size: 2.5rem; /* 40px */
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 1.5rem; /* 24px */
+}
+
+.hero h1 .highlight {
+    color: #ef4444;
+}
+
+.hero p {
+    color: #6b7280;
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.7;
+    margin-bottom: 2rem; /* 32px */
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-direction: column; /* Mobile: Buttons stack vertically */
+    gap: 1rem; /* 16px */
+    justify-content: center;
+}
+
+.btn-outline {
+    background: white;
+    border: 2px solid #ef4444;
+    color: #ef4444;
+    padding: 0.75rem 2rem; /* 12px 32px */
+    border-radius: 9999px;
+    font-size: 0.875rem; /* 14px */
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-outline:hover {
+    background: #fef2f2;
+}
+
+.btn-solid {
+    background: #ef4444;
+    border: none;
+    color: white;
+    padding: 0.75rem 2rem; /* 12px 32px */
+    border-radius: 9999px;
+    font-size: 0.875rem; /* 14px */
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-solid:hover {
+    background: #dc2626;
+}
+
+/* --- Hero Image Section --- */
+.hero-image {
+    flex: 1;
+    position: relative; /* Crucial for positioning child elements like rating-card */
+    width: 100%;
+    max-width: 450px;
+}
+
+.hero-card {
+    background: white;
+    border-radius: 1rem; /* 16px */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    padding: 1rem; /* 16px */
+}
+
+.hero-image-placeholder {
+    width: 100%;
+    /* Aspect-ratio provides a fluid height that maintains proportions */
+    aspect-ratio: 1 / 1;
+    max-height: 360px; /* Ensures it doesn't get too tall on wider containers */
+    background: linear-gradient(to bottom, #fdf2f8, #fce7f3);
+    border-radius: 0.75rem; /* 12px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden; /* Ensures the image respects the border-radius */
+}
+
+.hero-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.75rem; /* 12px */
+}
+
+/* --- Absolutely Positioned Floating Cards --- */
+.rating-card {
+    position: absolute;
+    /* Mobile-first: Positioned slightly inside to prevent overflow */
+    left: 0.5rem;  /* 8px */
+    top: 10%;
+    background: white;
+    border-radius: 0.75rem; /* 12px */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    padding: 1rem; /* 16px */
+    z-index: 10;
+}
+
+.rating-number {
+    font-size: 3rem; /* 48px */
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 0.25rem; /* 4px */
+}
+
+.rating-stars {
+    display: flex;
+    gap: 0.25rem; /* 4px */
+    margin-bottom: 0.25rem; /* 4px */
+}
+
+.star {
+    width: 16px;
+    height: 16px;
+    fill: #fbbf24;
+    stroke: #fbbf24;
+}
+
+.rating-label {
+    font-size: 0.75rem; /* 12px */
+    color: #6b7280;
+}
+
+.students-card {
+    position: absolute;
+    /* Mobile-first: Positioned slightly inside */
+    right: 0.5rem; /* 8px */
+    bottom: 10%;
+    background: white;
+    border-radius: 0.75rem; /* 12px */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    padding: 1rem; /* 16px */
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* 12px */
+    z-index: 10;
+}
+
+.students-icon {
+    width: 40px;
+    height: 40px;
+    background: #ef4444;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.students-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: white;
+}
+
+.students-number {
+    font-size: 1.5rem; /* 24px */
+    font-weight: bold;
+    line-height: 1;
+}
+
+.students-label {
+    font-size: 0.75rem; /* 12px */
+    color: #6b7280;
+}
+
+
+/* ==========================================================================
+   4. Services Section
+   ========================================================================== */
+
+.services {
+    padding: 4rem 1rem; /* 64px 16px */
+    background: white;
+}
+
+.services-container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.services-header {
+    text-align: center;
+    margin-bottom: 3rem; /* 48px */
+}
+
+.services-subtitle {
+    color: #ef4444;
+    font-size: 0.875rem; /* 14px */
+    font-weight: 500;
+    margin-bottom: 0.5rem; /* 8px */
+}
+
+.services h2 {
+    font-size: 2rem; /* 32px */
+    font-weight: bold;
+    margin-bottom: 1rem; /* 16px */
+}
+
+.services h2 .highlight {
+    color: #ef4444;
+}
+
+/* --- Features Grid --- */
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile: Single column */
+    gap: 2rem; /* 32px */
+}
+
+.feature-card {
+    text-align: center;
+}
+
+.feature-icon-container {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 1.5rem;
+    background: #fdf2f8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* For positioning the badge */
+}
+
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    stroke: #ef4444;
+}
+
+.feature-badge {
+    position: absolute;
+    top: -0.5rem; /* -8px */
+    right: -0.5rem; /* -8px */
+    width: 24px;
+    height: 24px;
+    background: #ef4444;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-badge svg {
+    width: 12px;
+    height: 12px;
+    fill: white;
+    stroke: white;
+}
+
+.feature-badge-square {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    background: #ef4444;
+    border-radius: 0.5rem; /* 8px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(12deg);
+}
+
+.feature-badge-square svg {
+    width: 16px;
+    height: 16px;
+    fill: white;
+    stroke: white;
+}
+
+.feature-card h3 {
+    font-size: 1.125rem; /* 18px */
+    font-weight: bold;
+    margin-bottom: 0.75rem; /* 12px */
+    line-height: 1.4;
+}
+
+.feature-card p {
+    font-size: 0.875rem; /* 14px */
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+
+/* ==========================================================================
+   5. Footer
+   ========================================================================== */
+
+footer {
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    padding: 2rem 1rem; /* 32px 16px */
+    text-align: center;
+}
+
+footer p {
+    font-size: 0.875rem; /* 14px */
+    color: #6b7280;
+}
+
+
+/* ==========================================================================
+   6. Responsive Media Queries (Mobile-First Approach)
+   ========================================================================== */
+
+/* --- Small devices (sm, 640px and up) --- */
+@media (min-width: 640px) {
+    .hero-buttons {
+        flex-direction: row; /* Buttons side-by-side */
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for services */
+    }
+}
+
+/* --- Medium devices (md, 768px and up) --- */
+@media (min-width: 768px) {
+    /* -- Header Adjustments -- */
+    .header-container {
+        padding: 0 1.5rem; /* Increase horizontal padding */
+    }
+    
+    .nav-desktop,
+    .cta-button-desktop {
+        display: flex; /* Show desktop nav and CTA button */
+    }
+
+    .mobile-menu-btn {
+        display: none; /* Hide hamburger menu icon */
+    }
+
+    /* -- Hero Section Adjustments -- */
+    .hero {
+        padding: 8rem 1.5rem 5rem;
+    }
+
+    .hero-container {
+        flex-direction: row; /* Switch to side-by-side layout */
+        gap: 3rem; /* 48px */
+        text-align: left;
+    }
+
+    .hero-content {
+        text-align: left; /* Align content to the left */
+    }
+
+    .hero h1 {
+        font-size: 3.5rem; /* 56px */
+    }
+
+    .hero p {
+        font-size: 1rem; /* 16px */
+        margin-left: 0; /* Reset mobile margin overrides */
+        margin-right: 0;
+    }
+
+    .hero-buttons {
+        justify-content: flex-start; /* Align buttons to the left */
+    }
+
+    /* Reposition floating cards to "pop out" of the main card */
+    .rating-card {
+        left: -1rem; /* -16px */
+        top: 33%;
+    }
+
+    .students-card {
+        right: -1rem; /* -16px */
+        bottom: 25%;
+    }
+
+    /* -- Services Section Adjustments -- */
+    .services {
+        padding: 6rem 1.5rem;
+    }
+
+    .services h2 {
+        font-size: 2.5rem; /* 40px */
+    }
+}
+
+/* --- Large devices (lg, 1024px and up) --- */
+@media (min-width: 1024px) {
+    .header-container {
+        padding: 0 2rem; /* Further increase horizontal padding */
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns for services */
+    }
+
+    .hero h1 {
+        font-size: 3.75rem; /* 60px */
+    }
+}
